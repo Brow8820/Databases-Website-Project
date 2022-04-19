@@ -69,11 +69,11 @@ class Customer(models.Model):
     Email = models.EmailField(max_length=256, null = False)
     StreetAddr = models.CharField(max_length = 512, null = False)
     City = models.CharField(max_length = 512, null = False)
-    State = models.CharField(max_length = 2, choices = STATES, null = False)
+    State = models.CharField(max_length = 14, choices = STATES, null = False)
     Zip = models.IntegerField()
     Phone = models.IntegerField(max_length=10, null = True)
     def __str__(self):
-        return self.field_name
+        return self.FirstName
     def get_absolute_url(self):
         return reverse('model-detail-view', args=[str(self.id)])
 
@@ -83,7 +83,7 @@ class Order(models.Model):
     TrackingNumber = models.IntegerField(max_length=50, null = False)
     #ShippingAddress = models.ManyToManyField(Address)        
     def __str__(self):
-        return self.field_name
+        return self.OrderNumber
     def get_absolute_url(self):
         return reverse('model-detail-view', args=[str(self.id)])
 
@@ -96,7 +96,7 @@ class PaymentMethod(models.Model):
     CardType = models.CharField(max_length=99, null = False)
     #BillingAddress = models.ManyToManyField(Address)
     def __str__(self):
-        return self.field_name
+        return self.NameOnCard
     def get_absolute_url(self):
         return reverse('model-detail-view', args=[str(self.id)])
 
@@ -122,11 +122,11 @@ class Company(models.Model):
     SupportPhone = models.IntegerField(max_length=10, null = True)
     StreetAddr = models.CharField(max_length = 512, null = False)
     City = models.CharField(max_length = 512, null = False)
-    State = models.CharField(max_length = 2, choices = STATES, null = False)
+    State = models.CharField(max_length = 14, choices = STATES, null = False)
     Zip = models.IntegerField()
     CompanyID =  models.IntegerField(max_length=10, null = False)
     AboutUs = models.CharField(max_length=512, null = False)
     def __str__(self):
-        return self.field_name
+        return self.CompanyName
     def get_absolute_url(self):
         return reverse('model-detail-view', args=[str(self.id)])
