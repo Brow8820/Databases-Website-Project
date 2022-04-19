@@ -104,10 +104,10 @@ class Product(models.Model):
     # file will be uploaded to MEDIA_ROOT / uploads                (either FileField or ImageField should be used)
     Picture = models.ImageField(upload_to = 'uploads/') 
     Type = models.CharField(max_length=99, null = False)
-    Price = CVV = models.IntegerField(max_length=10, null = False)
-    Rating  = CVV = models.IntegerField(max_length=5, null = False) # 1-5 rating?
-    ProductID = CVV = models.IntegerField(max_length=99, null = False)
-    ShippingCost =  CVV = models.IntegerField(max_length=10, null = False)
+    Price = models.IntegerField(max_length=10, null = False)
+    Rating  = models.IntegerField(max_length=5, null = False) # 1-5 rating?
+    ProductID = models.IntegerField(max_length=99, null = False)
+    ShippingCost = models.IntegerField(max_length=10, null = False)
     def __str__(self):
         return self.field_name
     def get_absolute_url(self):
