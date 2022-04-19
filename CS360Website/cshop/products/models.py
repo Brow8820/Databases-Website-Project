@@ -3,7 +3,59 @@ from django.db import models
 
 # Create your models here.
 
-
+STATES = [
+    ('ALABAMA','AL'),
+    ('ALASKA','AK'),
+    ('ARIZONA','AZ'),
+    ( 'ARKANSAS','AR'),
+    ('CALIFORNIA','CA'),
+    ('Colorado','CO'),
+    ('Connecticut','CT'),
+    ('Delaware','DE'),
+    ('Florida','FL'),
+    ('Georgia','GA'),
+    ('Hawaii','HI'),
+    ('Idaho','ID'),
+    ('Illinois','IL'),
+    ('Indiana','IN'),
+    ('Iowa','IA'),
+    ('Kansas','KS'),
+    ('Kentucky', 'KY'),
+    ('Louisiana', 'LA'),
+    ('Maine', 'ME'),
+    ('Maryland', 'MD'),
+    ('Massachusetts', 'MA'),
+    ('Michigan', 'MI'),
+    ('Minnesota', 'MN'),
+    ('Mississippi', 'MS'),
+    ('Missouri', 'MO'),
+    ('Montana', 'MT'),
+    ('Nebraska', 'NE'),
+    ('Nevada', 'NV'),
+    ('New Hampshire', 'NH'),
+    ('New Jersey', 'NJ'),
+    ('New Mexico', 'NM'),
+    ('New York', 'NY'),
+    ('North Carolina', 'NC'),
+    ('North Dakota', 'ND'),
+    ('Ohio', 'OH'),
+    ('Oklahoma', 'OK'),
+    ('Oregon', 'OR'),
+    ('Pennsylvania', 'PA'),
+    ('Rhode Island', 'RI'),
+    ('South Carolina', 'SC'),
+    ('South Dakota', 'SD'),
+    ('Tennessee', 'TN'),
+    ('Texas', 'TX'),
+    ('Utah', 'UT'),
+    ('Vermont', 'VT'),
+    ('Virgin Islands', 'VI'),
+    ('Virginia', 'VA'),
+    ('Washington', 'WA'),
+    ('West Virginia', 'WV'),
+    ('Wisconsin', 'WI'),
+    ('Wyoming', 'WY')
+]
 class Address(models.Model):
    
     StreetAddr = models.CharField(max_length = 512, null = False)
@@ -12,59 +64,6 @@ class Address(models.Model):
     Zip = models.IntegerField()
 
 class Customer(models.Model):
-    STATES = [
-        ('AL', 'ALABAMA'),
-        ('AK', 'ALASKA'),
-        ('AZ','ARIZONA'),
-        ('AR', 'ARKANSAS'),
-        ('CA', 'CALIFORNIA'),
-        ('Colorado','CO'),
-        ('Connecticut','CT'),
-        ('Delaware','DE'),
-        ('Florida','FL'),
-        ('Georgia','GA'),
-        ('Hawaii','HI'),
-        ('Idaho','ID'),
-        ('Illinois','IL'),
-        ('Indiana','IN'),
-        ('Iowa','IA'),
-        ('Kansas','KS'),
-        ('Kentucky', 'KY'),
-        ('Louisiana', 'LA'),
-        ('Maine', 'ME'),
-        ('Maryland', 'MD'),
-        ('Massachusetts', 'MA'),
-        ('Michigan', 'MI'),
-        ('Minnesota', 'MN'),
-        ('Mississippi', 'MS'),
-        ('Missouri', 'MO'),
-        ('Montana', 'MT'),
-        ('Nebraska', 'NE'),
-        ('Nevada', 'NV'),
-        ('New Hampshire', 'NH'),
-        ('New Jersey', 'NJ'),
-        ('New Mexico', 'NM'),
-        ('New York', 'NY'),
-        ('North Carolina', 'NC'),
-        ('North Dakota', 'ND'),
-        ('Ohio', 'OH'),
-        ('Oklahoma', 'OK'),
-        ('Oregon', 'OR'),
-        ('Pennsylvania', 'PA'),
-        ('Rhode Island', 'RI'),
-        ('South Carolina', 'SC'),
-        ('South Dakota', 'SD'),
-        ('Tennessee', 'TN'),
-        ('Texas', 'TX'),
-        ('Utah', 'UT'),
-        ('Vermont', 'VT'),
-        ('Virgin Islands', 'VI'),
-        ('Virginia', 'VA'),
-        ('Washington', 'WA'),
-        ('West Virginia', 'WV'),
-        ('Wisconsin', 'WI'),
-        ('Wyoming', 'WY')
-    ]
     FirstName = models.CharField(max_length=99, help_text='', null = False)
     LastName = models.CharField(max_length=99, help_text='', null = False)
     Email = models.EmailField(max_length=256, null = False)
@@ -78,11 +77,11 @@ class Customer(models.Model):
     def get_absolute_url(self):
         return reverse('model-detail-view', args=[str(self.id)])
 
-class Orders(models.Model):
+class Order(models.Model):
     Status = models.CharField(max_length=99, null = False)
     OrderNumber = models.IntegerField(max_length=50, null = False)
     TrackingNumber = models.IntegerField(max_length=50, null = False)
-    ShippingAddress = models.ManyToManyField(Address)        
+    #ShippingAddress = models.ManyToManyField(Address)        
     def __str__(self):
         return self.field_name
     def get_absolute_url(self):
@@ -95,7 +94,7 @@ class PaymentMethod(models.Model):
     Expiration = models.IntegerField(max_length=6, null = False)
     CVV = models.IntegerField(max_length=3, null = False)
     CardType = models.CharField(max_length=99, null = False)
-    BillingAddress = models.ManyToManyField(Address)
+    #BillingAddress = models.ManyToManyField(Address)
     def __str__(self):
         return self.field_name
     def get_absolute_url(self):
@@ -121,7 +120,10 @@ class Company(models.Model):
     CompanyName = models.CharField(max_length=99, null = False)
     SupportEmail = models.EmailField(max_length=256, null = False)
     SupportPhone = models.IntegerField(max_length=10, null = True)
-    CompanyAddress = models.ManyToManyField(Address)
+    StreetAddr = models.CharField(max_length = 512, null = False)
+    City = models.CharField(max_length = 512, null = False)
+    State = models.CharField(max_length = 2, choices = STATES, null = False)
+    Zip = models.IntegerField()
     CompanyID =  models.IntegerField(max_length=10, null = False)
     AboutUs = models.CharField(max_length=512, null = False)
     def __str__(self):
