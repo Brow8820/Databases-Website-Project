@@ -112,7 +112,7 @@ class Product(models.Model):
     ProductID = models.IntegerField(max_length=99, null = False)
     ShippingCost = models.IntegerField(max_length=10, null = False)
     def __str__(self):
-        return self.field_name
+        return self.ProductName
     def get_absolute_url(self):
         return reverse('model-detail-view', args=[str(self.id)])
 
