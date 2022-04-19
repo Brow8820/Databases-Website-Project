@@ -5,62 +5,10 @@ from django.db import models
 
 
 class Address(models.Model):
-    STATES = [
-        ('AL', 'ALABAMA'),
-        ('AK', 'ALASKA'),
-        ('AZ','ARIZONA'),
-        ('AR', 'ARKANSAS'),
-        ('CA', 'CALIFORNIA'),
-        ('Colorado','CO'),
-        ('Connecticut','CT'),
-        ('Delaware','DE'),
-        ('Florida','FL'),
-        ('Georgia','GA'),
-        ('Hawaii','HI'),
-        ('Idaho','ID'),
-        ('Illinois','IL'),
-        ('Indiana','IN'),
-        ('Iowa','IA'),
-        ('Kansas','KS'),
-        ('Kentucky KY'),
-        ('Louisiana LA'),
-        ('Maine ME'),
-        ('Maryland MD'),
-        ('Massachusetts MA'),
-        ('Michigan MI'),
-        ('Minnesota MN'),
-        ('Mississippi MS'),
-        ('Missouri MO'),
-        ('Montana MT'),
-        ('Nebraska NE'),
-        ('Nevada NV'),
-        ('New Hampshire NH'),
-        ('New Jersey NJ'),
-        ('New Mexico NM'),
-        ('New York NY'),
-        ('North Carolina NC'),
-        ('North Dakota ND'),
-        ('Ohio OH'),
-        ('Oklahoma OK'),
-        ('Oregon OR'),
-        ('Pennsylvania PA'),
-        ('Rhode Island RI'),
-        ('South Carolina SC'),
-        ('South Dakota SD'),
-        ('Tennessee TN'),
-        ('Texas TX'),
-        ('Utah UT'),
-        ('Vermont VT'),
-        ('Virgin Islands VI'),
-        ('Virginia VA'),
-        ('Washington WA'),
-        ('West Virginia WV'),
-        ('Wisconsin WI'),
-        ('Wyoming	WY')
-    ]
+   
     StreetAddr = models.CharField(max_length = 512, null = False)
     City = models.CharField(max_length = 512, null = False)
-    State = models.CharField(max_length = 2, choices = STATES, null = False)
+    #State = models.CharField(max_length = 2, choices = STATES, null = False)
     Zip = models.IntegerField()
 
 class Customer(models.Model):
@@ -158,7 +106,7 @@ class Product(models.Model):
     #Inventory as a integer for count?
     Inventory = models.IntegerField(max_length=99, null = False)
     # file will be uploaded to MEDIA_ROOT / uploads                (either FileField or ImageField should be used)
-    Picture = models.ImageField(upload_to = 'uploads/') 
+    Picture = models.ImageField(upload_to = './uploads/') 
     Type = models.CharField(max_length=99, null = False)
     Price = models.IntegerField(max_length=10, null = False)
     Rating  = models.IntegerField(max_length=5, null = False) # 1-5 rating?
