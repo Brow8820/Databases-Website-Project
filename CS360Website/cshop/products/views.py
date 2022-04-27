@@ -11,3 +11,9 @@ def index(request):
     }
 
     return render(request,'index.html', context=context)
+
+def searchbar(request):
+    if request.method == 'GET':
+        search = request.GET.get('search')
+        post = Blog.objects.all().filter(title=search)
+        return render(request, 'searchbar.html', {'post':post})

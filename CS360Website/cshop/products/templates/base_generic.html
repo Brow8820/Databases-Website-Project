@@ -24,5 +24,12 @@
       <div class="col-sm-10 ">{% block content %}{% endblock %}</div>
     </div>
   </div>
+  <center>
+  <form action="{% url 'searchbar' %}" method="get">
+      <input type="text" name="search"/>
+      <button type=""submit>Search</button>
+  </form>
+  </center>
+
 </body>
 </html>
