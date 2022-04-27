@@ -15,5 +15,5 @@ def index(request):
 def searchbar(request):
     if request.method == 'GET':
         search = request.GET.get('search')
-        post = Blog.objects.all().filter(title=search)
+        post = Product.objects.all().filter(title=search)
         return render(request, 'searchbar.html', {'post':post})
