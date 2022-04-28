@@ -1,5 +1,6 @@
 from telnetlib import STATUS
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -105,7 +106,7 @@ class Product(models.Model):
     #Inventory as a integer for count?
     Inventory = models.IntegerField(max_length=99, null = False)
     # file will be uploaded to MEDIA_ROOT / uploads                (either FileField or ImageField should be used)
-    Picture = models.ImageField(upload_to = './uploads/') 
+    Picture = models.ImageField(upload_to = './uploads/', null = True) 
     Type = models.CharField(max_length=99, null = False)
     Price = models.IntegerField(max_length=10, null = False)
     Rating  = models.IntegerField(max_length=5, null = False) # 1-5 rating?
@@ -114,7 +115,7 @@ class Product(models.Model):
     def __str__(self):
         return self.ProductName
     def get_absolute_url(self):
-        return reverse('model-detail-view', args=[str(self.id)])
+        return reverse('item-detail', args=[str(self.id)])
 
 class Company(models.Model):
     CompanyName = models.CharField(max_length=99, null = False)

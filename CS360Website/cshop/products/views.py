@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Customer, Order, PaymentMethod, Company, Product
+from django.views import generic
 
 def index(request):
     num_products = Product.objects.all().count()
@@ -17,3 +18,11 @@ def searchbar(request):
         search = request.GET.get('search')
         post = Product.objects.all().filter(title=search)
         return render(request, 'searchbar.html', {'post':post})
+
+class ProductListView(generic.ListView):
+    model = Product
+    #context_object_name= 'product_list'
+
+class ProductDetailView(generic.DetailView):
+    model = Product
+
