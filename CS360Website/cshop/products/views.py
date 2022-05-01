@@ -21,7 +21,7 @@ def searchbar(request):
 
 class ProductListView(generic.ListView):
     model = Product
-    #context_object_name= 'product_list'
+    context_object_name= 'product_list'
 
 class ProductDetailView(generic.DetailView):
     model = Product
