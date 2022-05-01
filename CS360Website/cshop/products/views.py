@@ -29,7 +29,8 @@ class ProductDetailView(generic.DetailView):
 
 class CompanyListView(generic.ListView):
     model = Company
-    context_object_name= 'companies_list'    
+    context_object_name= 'companies_list'  
+    paginate_by = 15  
 
 class CompanyDetailView(generic.DetailView):
     model = Company
