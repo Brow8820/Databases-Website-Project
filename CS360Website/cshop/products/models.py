@@ -130,4 +130,4 @@ class Company(models.Model):
     def __str__(self):
         return self.CompanyName
     def get_absolute_url(self):
-        return reverse('model-detail-view', args=[str(self.id)])
+        return reverse('company-detail', args=[str(self.id)])

@@ -27,3 +27,9 @@ class ProductListView(generic.ListView):
 class ProductDetailView(generic.DetailView):
     model = Product
 
+class CompanyListView(generic.ListView):
+    model = Company
+    context_object_name= 'companies_list'    
+
+class CompanyDetailView(generic.DetailView):
+    model = Company
