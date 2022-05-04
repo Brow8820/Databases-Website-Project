@@ -16,7 +16,8 @@ def index(request):
 def searchbar(request):
     if request.method == 'GET':
         search = request.GET.get('search')
-        post = Product.objects.all().filter(title=search)
+        post = Product.objects.all().filter(ProductName=search)
+        post |= Product.objects.all().filter(ProductName__contains=search)
         return render(request, 'searchbar.html', {'post':post})
 
 class ProductListView(generic.ListView):

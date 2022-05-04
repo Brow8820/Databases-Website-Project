@@ -106,7 +106,7 @@ class Product(models.Model):
     #Inventory as a integer for count?
     Inventory = models.IntegerField(max_length=99, null = False)
     # file will be uploaded to MEDIA_ROOT / uploads                (either FileField or ImageField should be used)
-    Picture = models.ImageField(upload_to = './uploads/', null = True) 
+    Picture = models.ImageField(upload_to = 'uploads/', null = True) 
     Type = models.CharField(max_length=99, null = False)
     Price = models.IntegerField(max_length=10, null = False)
     Rating  = models.IntegerField(max_length=5, null = False) # 1-5 rating?

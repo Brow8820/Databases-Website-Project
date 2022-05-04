@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
+  <form action="{% url 'searchbar' %}" method="get">
+    <input type="text" name="search"/>
+    <button type=""submit>Search</button>
+  </form>
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-2">
@@ -50,10 +54,7 @@
     </div>
   </div>
   <center>
-  <form action="{% url 'searchbar' %}" method="get">
-      <input type="text" name="search"/>
-      <button type=""submit>Search</button>
-  </form>
+
   </center>
 
 </body>
