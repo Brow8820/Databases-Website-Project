@@ -1,6 +1,7 @@
 from telnetlib import STATUS
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -131,3 +132,14 @@ class Company(models.Model):
         return self.CompanyName
     def get_absolute_url(self):
         return reverse('company-detail', args=[str(self.id)])
+
+class WishList(models.Model):
+    user = models.ForeignKey(User, related_name = "wList", on_delete = models.CASCADE)
+    items = models.ManyToManyField(Product)
+    slug = models.SlugField(max_length=150, db_index=True)
+
+    def __str__(self):
+        return self
+    def get_absolute_url(self):
+        return reverse("Wish_detail", args=[self.slug])
+    

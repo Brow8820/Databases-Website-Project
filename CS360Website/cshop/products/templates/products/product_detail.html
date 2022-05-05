@@ -1,13 +1,26 @@
 {% extends "base_generic.html" %}
 
+
 {% block content %}
   <h1>{{ product.ProductName }}</h1>
   <img src={{product.Picture.url}}>
   <!--<p><strong>:</strong> <a href="">{{ product.author }}</a></p> <!-- author detail link not yet defined -->
-  <!--<p><strong>Summary:</strong> {{ product.summary }}</p>
-  <p><strong>ISBN:</strong> {{ product.isbn }}</p>
-  <p><strong>Language:</strong> {{ product.language }}</p>
-  <p><strong>Genre:</strong> {{ product.genre.all|join:", " }}</p> -->
+  <p><strong>Price:</strong> ${{ product.Price }}</p>
+  {% if product.ShippingCost > 0 %}
+      <p><strong>Shipping:</strong> {{ product.ShippingCost }}</p>
+  {% else %}
+      <p><strong>Free Shipping</strong></p>
+  {%endif%}
+  <p><strong>Rating:</strong> {{ product.Rating }}/10</p>
+  
+  {% if product.Inventory < 15%}
+    <p><strong>Only a Few Left in Stock</strong></p>
+  {%else%}
+    <p><strong> {{product.Inventory}} in Stock </strong></p>
+  {%endif%}
+  {%if user.is_authenticated%}
+    <button onclick="">Add to Wish List</button>
+  {%endif%}
 
   <div style="margin-left:20px;margin-top:20px">
 {% endblock%}
