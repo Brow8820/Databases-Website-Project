@@ -44,3 +44,12 @@ class CompanyListView(generic.ListView):
 
 class CompanyDetailView(generic.DetailView):
     model = Company
+
+class Product100(generic.ListView):
+    model = Product
+    filtered = Product.objects.all().filter(Price__lte=100)
+    context_object_name = 'product_100'
+    paginate_by = 15
+
+class ProductDetailView100(generic.DetailView):
+    model = Product

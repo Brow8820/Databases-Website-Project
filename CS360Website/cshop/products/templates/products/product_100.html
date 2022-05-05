@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Product List Test</h1>
+  {% if product_100 %}
+  <ul>
+    {% for Product in filtered %}
+      <li>
+        <a href="{{ Product.get_absolute_url }}">{{ Product.ProductName}}</a> (${{Product.Price}})
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no Products in the library.</p>
+  {% endif %}
+{% endblock %}
