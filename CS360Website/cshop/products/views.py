@@ -1,6 +1,9 @@
-from django.shortcuts import render
-from .models import Customer, Order, PaymentMethod, Company, Product
+from django.shortcuts import render,redirect
+from .models import WishList,Customer, Order, PaymentMethod, Company, Product
 from django.views import generic
+from django.contrib.auth import login
+from django.contrib import messages
+
 
 def index(request):
     num_products = Product.objects.all().count()
@@ -27,6 +30,12 @@ class ProductListView(generic.ListView):
 
 class ProductDetailView(generic.DetailView):
     model = Product
+    def addWish(cust, prod):
+        try:    
+            b = WishList(user=cust, item = prod)
+            b.save()
+        except:
+            return("Could Not Add Item")
 
 class CompanyListView(generic.ListView):
     model = Company
