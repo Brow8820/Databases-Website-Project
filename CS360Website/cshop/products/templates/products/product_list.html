@@ -11,6 +11,7 @@
     {% endfor %}
   </ul>
   {% elif product_100 %}
+  <strong>Filtered Price: <$100 </strong>
   <ul>
     {% for Product in product_100 %}
       <li>
@@ -18,6 +19,7 @@
       </li>
     {% endfor %}
   {% elif product_500 %}
+  <strong>Filtered Price: ($100 - $500) </strong>
   <ul>
     {% for Product in product_500 %}
       <li>
@@ -26,6 +28,7 @@
     {% endfor %}
   </ul>
   {% elif product_2000 %}
+  <strong>Filtered Price: ($500 - $2,000) </strong>
   <ul>
     {% for Product in product_2000 %}
       <li>
@@ -33,6 +36,7 @@
       </li>
     {% endfor %}
   {% elif product_5000 %}
+  <strong>Filtered Price: ($2,000 - $5,000) </strong>
   <ul>
     {% for Product in product_5000 %}
       <li>
@@ -40,6 +44,7 @@
       </li>
     {% endfor %}
   {% elif product_5001 %}
+  <strong>Filtered Price: +$5,000 </strong>
     <ul>
       {% for Product in product_5001 %}
         <li>
