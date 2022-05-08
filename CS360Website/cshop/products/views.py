@@ -49,10 +49,36 @@ class Product100(generic.ListView):
     model = Product
     context_object_name = 'product_100'
     paginate_by = 15
-    template_name = 'templates/products/product100_list.html'
     def get_queryset(self):
-        return Product.objects.all().filter(Price__lte =100)
-    
+        return Product.objects.all().filter(Price__lt =100)
+
+class Product500(generic.ListView):
+    model = Product
+    context_object_name = 'product_500'
+    paginate_by = 15
+    def get_queryset(self):
+        return Product.objects.all().filter(Price__range = [100,500])
+
+class Product2000(generic.ListView):
+    model = Product
+    context_object_name = 'product_2000'
+    paginate_by = 15
+    def get_queryset(self):
+        return Product.objects.all().filter(Price__range = [500,2000])
+
+class Product5000(generic.ListView):
+    model = Product
+    context_object_name = 'product_5000'
+    paginate_by = 15
+    def get_queryset(self):
+        return Product.objects.all().filter(Price__range = [2000,5000])
+
+class Product5001(generic.ListView):
+    model = Product
+    context_object_name = 'product_5001'
+    paginate_by = 15
+    def get_queryset(self):
+        return Product.objects.all().filter(Price__gte =5000)
 
 class ProductDetailView100(generic.DetailView):
     model = Product

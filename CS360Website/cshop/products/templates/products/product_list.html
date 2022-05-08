@@ -17,8 +17,36 @@
         <a href="{{ Product.get_absolute_url }}">{{ Product.ProductName}}</a> (${{Product.Price}})
       </li>
     {% endfor %}
+  {% elif product_500 %}
+  <ul>
+    {% for Product in product_500 %}
+      <li>
+        <a href="{{ Product.get_absolute_url }}">{{ Product.ProductName}}</a> (${{Product.Price}})
+      </li>
+    {% endfor %}
   </ul>
-  {% else %}
+  {% elif product_2000 %}
+  <ul>
+    {% for Product in product_2000 %}
+      <li>
+        <a href="{{ Product.get_absolute_url }}">{{ Product.ProductName}}</a> (${{Product.Price}})
+      </li>
+    {% endfor %}
+  {% elif product_5000 %}
+  <ul>
+    {% for Product in product_5000 %}
+      <li>
+        <a href="{{ Product.get_absolute_url }}">{{ Product.ProductName}}</a> (${{Product.Price}})
+      </li>
+    {% endfor %}
+  {% elif product_5001 %}
+    <ul>
+      {% for Product in product_5001 %}
+        <li>
+          <a href="{{ Product.get_absolute_url }}">{{ Product.ProductName}}</a> (${{Product.Price}})
+        </li>
+      {% endfor %}
+    {% else %}
     <p>There are no Products in the library.</p>
   {% endif %}
 {% endblock %}
