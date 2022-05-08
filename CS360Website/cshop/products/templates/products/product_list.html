@@ -46,6 +46,13 @@
           <a href="{{ Product.get_absolute_url }}">{{ Product.ProductName}}</a> (${{Product.Price}})
         </li>
       {% endfor %}
+  {% elif product_wlist %}
+    <ul>
+      {% for Product in product_wlist %}
+        <li>
+          <a href="{{ Product.get_absolute_url }}">{{ Product.ProductName}}</a> (${{Product.Price}})
+        </li>        
+  {% endfor %}
     {% else %}
     <p>There are no Products in the library.</p>
   {% endif %}

@@ -136,7 +136,7 @@ class Company(models.Model):
 class WishList(models.Model):
     test = models.IntegerField(null = False)
     user = models.ForeignKey(User, related_name = "wishList", on_delete = models.CASCADE)
-    items = models.ForeignKey(Product, on_delete = models.CASCADE, related_name="none")
+    items = models.ForeignKey(Product, on_delete = models.CASCADE, related_name="wlistItem")
     slug = models.SlugField(max_length=160, db_index=True)
 
     def __str__(self):

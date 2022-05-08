@@ -88,6 +88,20 @@ class Product5001(generic.ListView):
     def get_queryset(self):
         return Product.objects.all().filter(Price__gte =5000)
 
+class ProductwList(generic.ListView):
+    model = Product
+    context_object_name='product_wlist'
+    paginate_by = 10
+    def get_queryset(self):
+        prodList = Product.objects.none()
+        wlist = WishList.objects.all().filter(user = self.request.user)
+        for query in wlist:
+            prodList |= Product.objects.all().filter(pk = query.items.id)
+        return prodList
+
+
+
+
 class ProductDetailView100(generic.DetailView):
     model = Product
 

@@ -12,6 +12,7 @@ urlpatterns +=[
     path('stock102/', views.Product2000.as_view(), name='stock102'),
     path('stock103/', views.Product5000.as_view(), name='stock103'),
     path('stock104/', views.Product5001.as_view(), name='stock104'),
+    path('wishlist/', views.ProductwList.as_view(), name='stock999'),
     path('companies/', views.CompanyListView.as_view(), name='companies'),
     path('product/<int:pk>', views.ProductDetailView.as_view(), name = 'item-detail'),
     path('company/<int:pk>', views.CompanyDetailView.as_view(), name = 'company-detail'),
