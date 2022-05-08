@@ -47,9 +47,12 @@ class CompanyDetailView(generic.DetailView):
 
 class Product100(generic.ListView):
     model = Product
-    filtered = Product.objects.all().filter(Price__lte=100)
     context_object_name = 'product_100'
     paginate_by = 15
+    template_name = 'templates/products/product100_list.html'
+    def get_queryset(self):
+        return Product.objects.all().filter(Price__lte =100)
+    
 
 class ProductDetailView100(generic.DetailView):
     model = Product

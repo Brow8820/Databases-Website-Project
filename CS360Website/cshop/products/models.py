@@ -73,7 +73,7 @@ class Customer(models.Model):
     City = models.CharField(max_length = 512, null = False)
     State = models.CharField(max_length = 14, choices = STATES, null = False)
     Zip = models.IntegerField()
-    Phone = models.IntegerField(max_length=10, null = True)
+    Phone = models.IntegerField( null = True)
     def __str__(self):
         return self.FirstName
     def get_absolute_url(self):
@@ -81,8 +81,8 @@ class Customer(models.Model):
 
 class Order(models.Model):
     Status = models.CharField(max_length=99, null = False)
-    OrderNumber = models.IntegerField(max_length=50, null = False)
-    TrackingNumber = models.IntegerField(max_length=50, null = False)
+    OrderNumber = models.IntegerField(null = False)
+    TrackingNumber = models.IntegerField(null = False)
     #ShippingAddress = models.ManyToManyField(Address)        
     def __str__(self):
         return self.OrderNumber
@@ -90,11 +90,11 @@ class Order(models.Model):
         return reverse('model-detail-view', args=[str(self.id)])
 
 class PaymentMethod(models.Model):
-    CardNumber = models.IntegerField(max_length=16, null = False)
+    CardNumber = models.IntegerField(null = False)
     CardCompany = models.CharField(max_length=99, null = False)
     NameOnCard = models.CharField(max_length=99, null = False)
-    Expiration = models.IntegerField(max_length=6, null = False)
-    CVV = models.IntegerField(max_length=3, null = False)
+    Expiration = models.IntegerField(null = False)
+    CVV = models.IntegerField(null = False)
     CardType = models.CharField(max_length=99, null = False)
     #BillingAddress = models.ManyToManyField(Address)
     def __str__(self):
@@ -105,14 +105,14 @@ class PaymentMethod(models.Model):
 class Product(models.Model):
     ProductName = models.CharField(max_length=99, null = False)
     #Inventory as a integer for count?
-    Inventory = models.IntegerField(max_length=99, null = False)
+    Inventory = models.IntegerField(null = False)
     # file will be uploaded to MEDIA_ROOT / uploads                (either FileField or ImageField should be used)
     Picture = models.ImageField(upload_to = 'uploads/', null = True) 
     Type = models.CharField(max_length=99, null = False)
-    Price = models.IntegerField(max_length=10, null = False)
-    Rating  = models.IntegerField(max_length=5, null = False) # 1-5 rating?
-    ProductID = models.IntegerField(max_length=99, null = False)
-    ShippingCost = models.IntegerField(max_length=10, null = False)
+    Price = models.IntegerField(null = False)
+    Rating  = models.IntegerField(null = False) # 1-5 rating?
+    ProductID = models.IntegerField(null = False)
+    ShippingCost = models.IntegerField(null = False)
     def __str__(self):
         return self.ProductName
     def get_absolute_url(self):
@@ -121,12 +121,12 @@ class Product(models.Model):
 class Company(models.Model):
     CompanyName = models.CharField(max_length=99, null = False)
     SupportEmail = models.EmailField(max_length=256, null = False)
-    SupportPhone = models.IntegerField(max_length=10, null = True)
+    SupportPhone = models.IntegerField( null = True)
     StreetAddr = models.CharField(max_length = 512, null = False)
     City = models.CharField(max_length = 512, null = False)
     State = models.CharField(max_length = 14, choices = STATES, null = False)
     Zip = models.IntegerField()
-    CompanyID =  models.IntegerField(max_length=10, null = False)
+    CompanyID =  models.IntegerField(null = False)
     AboutUs = models.CharField(max_length=512, null = False)
     def __str__(self):
         return self.CompanyName
@@ -134,9 +134,10 @@ class Company(models.Model):
         return reverse('company-detail', args=[str(self.id)])
 
 class WishList(models.Model):
-    user = models.ForeignKey(User, related_name = "wList", on_delete = models.CASCADE)
-    items = models.ManyToManyField(Product)
-    slug = models.SlugField(max_length=150, db_index=True)
+    test = models.IntegerField(null = False)
+    user = models.ForeignKey(User, related_name = "wishList", on_delete = models.CASCADE)
+    items = models.ForeignKey(Product, on_delete = models.CASCADE, related_name="none")
+    slug = models.SlugField(max_length=160, db_index=True)
 
     def __str__(self):
         return self

@@ -10,6 +10,14 @@
       </li>
     {% endfor %}
   </ul>
+  {% elif product_100 %}
+  <ul>
+    {% for Product in product_100 %}
+      <li>
+        <a href="{{ Product.get_absolute_url }}">{{ Product.ProductName}}</a> (${{Product.Price}})
+      </li>
+    {% endfor %}
+  </ul>
   {% else %}
     <p>There are no Products in the library.</p>
   {% endif %}
