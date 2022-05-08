@@ -3,6 +3,8 @@ from .models import WishList,Customer, Order, PaymentMethod, Company, Product
 from django.views import generic
 from django.contrib.auth import login
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 def index(request):
@@ -30,12 +32,18 @@ class ProductListView(generic.ListView):
 
 class ProductDetailView(generic.DetailView):
     model = Product
-    def addWish(cust, prod):
-        try:    
-            b = WishList(user=cust, item = prod)
-            b.save()
-        except:
-            return("Could Not Add Item")
+    
+    
+def addwish(request, pk):
+    x = int(pk)
+    try:
+        obj =  Product.objects.filter(pk=x).first()
+    except:
+        obj = None
+    newOb = WishList(test = 1,user = request.user, items = obj)
+    newOb.save()
+    return HttpResponseRedirect('/products/product/'+str(pk))
+
 
 class CompanyListView(generic.ListView):
     model = Company

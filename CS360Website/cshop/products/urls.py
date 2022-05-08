@@ -5,6 +5,7 @@ urlpatterns = []
 urlpatterns +=[
     path('', views.index, name='index'),
     path('searchbar/', views.searchbar, name='searchbar'),
+    path('addwish/<int:pk>', views.addwish, name= 'addwish'),
     path('stock/', views.ProductListView.as_view(), name='stock'),
     path('stock100/', views.Product100.as_view(), name='stock100'),
     path('stock101/', views.Product500.as_view(), name='stock101'),

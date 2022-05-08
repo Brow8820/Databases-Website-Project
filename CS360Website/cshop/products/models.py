@@ -140,7 +140,7 @@ class WishList(models.Model):
     slug = models.SlugField(max_length=160, db_index=True)
 
     def __str__(self):
-        return self
+        return self.items.ProductName
     def get_absolute_url(self):
         return reverse("Wish_detail", args=[self.slug])
     

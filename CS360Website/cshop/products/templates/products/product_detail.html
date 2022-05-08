@@ -19,7 +19,10 @@
     <p><strong> {{product.Inventory}} in Stock </strong></p>
   {%endif%}
   {%if user.is_authenticated%}
-    <button onclick="">Add to Wish List</button>
+    <form action="{% url 'addwish' product.id %}" method="post">
+      {% csrf_token %}
+      <input type="submit" calss="btn" value="Add to Wishlist" name="wbtn">
+    </form>
   {%endif%}
 
   <div style="margin-left:20px;margin-top:20px">
