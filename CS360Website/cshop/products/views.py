@@ -90,3 +90,5 @@ class Product5001(generic.ListView):
 
 class ProductDetailView100(generic.DetailView):
     model = Product
+
+#push reset stuff
